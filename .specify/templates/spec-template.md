@@ -90,6 +90,22 @@
 - **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
 - **FR-005**: System MUST [behavior, e.g., "log all security events"]
 
+### API Integration Requirements *(if feature uses external data providers)*
+
+Note: This project standardizes on two providers: Bocha and Tavily. Provider
+configuration is read from `Config.py` for development; production MUST use
+environment variables or a secret manager.
+
+- **API-REQ-001**: Feature MUST declare which of Bocha/Tavily endpoints are used,
+  the API version, and expected rate limits.
+- **API-REQ-002**: For each used endpoint include a contract description (request/response
+  schema) and an automated contract test under `tests/contract/` validating the schema.
+- **API-REQ-003**: Feature MUST include a cost estimate and overflow strategy when
+  rate limits are reached (caching, backoff, degraded UX).
+- **API-REQ-004**: Data provenance: every record persisted from an API MUST include
+  provider identifier (bocha/tavily), API version, timestamp, and request id for auditability.
+
+
 *Example of marking unclear requirements:*
 
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]

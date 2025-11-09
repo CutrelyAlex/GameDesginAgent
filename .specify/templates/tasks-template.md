@@ -60,14 +60,15 @@ description: "Task list template for feature implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
+
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
+- [ ] T004 Verify `Config.py` contains Bocha and Tavily settings (endpoints and keys) for development; ensure plan to move secrets to env/secret manager in production
+- [ ] T005 [P] Implement credential management & secret storage for API keys (rotation policy, least privilege)
+- [ ] T006 [P] Implement API client infrastructure: retry/backoff, rate-limit handling, and circuit-breaker or graceful degradation
+- [ ] T007 Create base models/entities that all stories depend on and include data provenance fields (provider, api_version, request_id, timestamp)
+- [ ] T008 Configure error handling, structured logging and tracing (include API call metadata)
+- [ ] T009 Setup environment configuration management (secrets, feature flags, staging vs prod API endpoints)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -156,6 +157,9 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
 - [ ] TXXX Security hardening
 - [ ] TXXX Run quickstart.md validation
+
+- [ ] TXXX API usage monitoring: Add metrics/dashboards for API calls, errors, quota usage and cost
+- [ ] TXXX Add cache invalidation and fallback strategies for critical endpoints
 
 ---
 

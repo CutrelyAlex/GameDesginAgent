@@ -1,20 +1,22 @@
-# [PROJECT NAME] Development Guidelines
+# aiagent Development Guidelines
 
-Auto-generated from all feature plans. Last updated: [DATE]
+Auto-generated from all feature plans. Last updated: 2025-11-09
 
 ## Active Technologies
 
-[EXTRACTED FROM ALL PLAN.MD FILES]
+- [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION] + [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION] (001-info-aggregation)
 
 ## Project Structure
 
 ```text
-[ACTUAL STRUCTURE FROM PLANS]
+backend/
+frontend/
+tests/
 ```
 
 ## Commands
 
-[ONLY COMMANDS FOR ACTIVE TECHNOLOGIES]
+cd src; pytest; ruff check .
 
 ## API Usage & Provider Guidance
 
@@ -26,11 +28,11 @@ Auto-generated from all feature plans. Last updated: [DATE]
 
 ## Code Style
 
-[LANGUAGE-SPECIFIC, ONLY FOR LANGUAGES IN USE]
+[e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]: Follow standard conventions
 
 ## Recent Changes
 
-[LAST 3 FEATURES AND WHAT THEY ADDED]
+- 001-info-aggregation: Added [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION] + [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]
 
 <!-- MANUAL ADDITIONS START -->
 <!-- MANUAL ADDITIONS END -->

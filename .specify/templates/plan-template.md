@@ -31,7 +31,18 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- Gates determined by the project constitution (API-First):
+
+- Provider configuration: The project MUST verify that `Config.py` (or environment-backed
+  configuration in production) contains the approved providers (Bocha, Tavily) and connection
+  parameters before Phase 0 completes. In production, secrets MUST be provided via a secret
+  manager or environment variables — storing secrets in repo is for development only.
+- Cost & Quota Assessment: Estimated cost, rate limits, and a budget/alert plan MUST be documented.
+- Compliance Check: Legal/compliance sign-off (data licensing, PII handling, export controls) MUST be
+  recorded for each provider.
+- Credential Management: Storage and rotation policy for API keys MUST be defined and approved.
+- Contract Tests: A minimal contract-test plan (request/response schemas, error handling) MUST be
+  defined and added to the plan before Phase 1.
 
 ## Project Structure
 

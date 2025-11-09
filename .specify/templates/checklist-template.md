@@ -26,6 +26,14 @@
 - [ ] CHK002 Second checklist item
 - [ ] CHK003 Third checklist item
 
+## API Provider Checklist
+
+ - [ ] CHK-API-001: `Config.py` contains BOCHA_API_URL/BOCHA_API_KEY and TAVILY_API_URL/TAVILY_API_KEY for development
+ - [ ] CHK-API-002: Secrets are planned to be migrated to env/secret manager for production
+ - [ ] CHK-API-003: Rate limits and cost estimates for Bocha/Tavily are documented (or referenced in BOCHA-GUIDE.md)
+ - [ ] CHK-API-004: Contract tests exist for key endpoints used (tests/contract)
+ - [ ] CHK-API-005: Data provenance fields will be persisted (provider, api_version, request_id)
+
 ## [Category 2]
 
 - [ ] CHK004 Another category item

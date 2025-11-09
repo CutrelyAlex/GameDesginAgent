@@ -1,50 +1,114 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
 
-## Core Principles
+Version change: 0.1.0 → 1.0.0
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+Modified principles:
+- 移除: 架构分离（爬虫系统 与 Agent 系统）及相关“爬虫实现”约定
+- 新增/替换: 专业搜索平台 API 优先（API-First）原则
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Added sections:
+- API 使用与供应商选择指南
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+Removed sections:
+- 与本地/仓库中爬虫代码直接相关的实现与约束（`crawler/` 目录已删除）
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+Templates requiring updates:
+- .specify/templates/plan-template.md -> ⚠ pending: 请替换“爬虫检查”条目为 API 合规/配额/成本检查
+- .specify/templates/spec-template.md -> ⚠ pending: 在 Requirements 中添加 API 供应商契约与速率限制说明
+- .specify/templates/tasks-template.md -> ⚠ pending: 替换爬虫初始化任务为 API key 管理、配额监控、缓存与降级策略任务
+- .specify/templates/checklist-template.md -> ⚠ pending: 检查是否存在对本地爬虫或 Playwright 的引用
+- .specify/templates/agent-file-template.md -> ⚠ pending: 更新运行时指导以反映 API 优先策略
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+Repository changes performed:
+- ✅ 已删除本仓库中的 `crawler/` 目录及其克隆内容（移除本地爬虫实现）
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Follow-up TODOs:
+- TODO(RATIFICATION_DATE): 初始采纳日期未知 - 请维护者补充
+- 在 README/CONTRIBUTING 中加入“API 使用与合规”节，列出允许的供应商与许可约束
+-->
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+# GameDesginAgent 宪章
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## 核心原则
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### 专业搜索平台 API 优先（API-First）
+在获取外部内容时，项目应优先使用受信任的、正式授权的专业搜索或数据平台 API（例如付费/企业搜索 API、数据供应商或第三方索引服务），而非直接依赖自建大规模爬虫。所有外部数据接入必须建立在合法许可、服务条款允许与商业/合规评估之上。
 
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+理由：专业 API 提供更稳定、可维护的接口，减少法律与合规风险，并有助于控制成本与数据质量。
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+非可谈判规则：
+- 对外数据访问 MUST 优先使用正式 API，并在选择供应商时记录 SLA、速率限制与许可条款。
+- 所有 API 调用 MUST 包含调用者标识、时间戳，并在本地记录响应元数据以便审计与溯源。
+- 若无法通过官方 API 获得必要数据，必须在变更记录中说明替代方案、合规评估与审批流程。
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+### 数据合规与许可（强制）
+所有接入与使用的数据必须遵守供应商许可、服务条款和适用法律法规；敏感或受限内容不得使用。每条数据记录必须包含来源声明与许可标签，且在任何发布或训练前完成合规评审与记录保存。
+
+理由：尊重版权和隐私、保证长期可持续运行。
+
+非可谈判规则：
+- 在与第三方 API 整合前 MUST 完成许可与成本評估，并记录在 spec/ 或 docs/ 中。
+- 对于受版权保护或包含个人信息的内容，必须有明确的使用许可与数据最小化措施。
+
+### 可复现与测试优先（TDD-lite）
+关键功能与接口必须有明确的规范（spec）与对应的自动化测试（单元/集成/契约测试）。数据处理步骤应可复现（记录转换步骤、随机种子、依赖版本）。在重要改动合并前，相关测试 MUST 通过。
+
+理由：AI 系统的不可预期性需要可复现性与可验证的质量门。
+
+非可谈判规则：
+- 所有对数据结构、API 或契约的更改必须伴随契约测试（contract tests）。
+- 数据处理管道的关键步骤需具备样本回归测试与小体量端到端示例（fixtures）。
+
+### 可观测性与可解释性
+系统必须产出结构化日志、追踪与决策溯源信息。Agent 的关键决策（如评分、推荐、变更建议）需记录输入摘要、模型/策略版本及可解释性元数据，便于审计与回溯。
+
+理由：可观察性是排查问题、保证合规与改进模型的基础。
+
+非可谈判规则：
+- 关键组件 MUST 输出结构化日志（JSON），包含时间、组件、实例、请求ID、处理耗时、关键输入摘要与结果摘要。
+- 所有模型推理/策略运行需记录版本标识与随机种子（若适用）。
+
+### 模块化与可扩展性（语义化版本与接口契约）
+遵循最小权限、最小暴露原则。对外公开接口应保持向后兼容；重大不兼容更改需通过语义化版本（MAJOR.MINOR.PATCH）管理并记录迁移策略。
+
+理由：清晰版本策略与模块化设计降低破坏性改动的风险。
+
+非可谈判规则：
+- 版本规则：MAJOR（不兼容变更）、MINOR（新增/向后兼容功能）、PATCH（文案/修复/非功能性改进）。
+- API/数据契约变更须提供迁移指南与向后兼容性评估。
+
+## 约束与要求
+
+- 外部数据接入：优先使用授权 API；对于每个已接入的 API，必须在 `docs/api-providers.md`（或相应 spec）中记录供应商、API 版本、速率限制、成本与许可摘要。
+- 数据目录结构（约定）：
+  - `data/raw/`：原始接入响应/导出（包含 metadata.json 每条记录，记录来源与调用信息）
+  - `data/processed/`：清洗与解析后的结构化数据
+  - `data/manifest.json`：数据集版本、API 供应商版本、许可声明
+- 技术栈建议：Python 3.11+, pytest, black/ruff, 可选 FastAPI 作为 Agent 的外部接口。
+- API 凭证管理：所有 API keys/凭证不得提交仓库，必须使用环境变量或秘密管理方案，并在 docs/ 中记录凭证轮换与权限最小化策略。
+
+## 开发工作流
+
+- 分支策略：feature/*、fix/*、chore/*，主分支为 `main`。
+- PR 要求：每个 PR 必须包含关联的 spec/任务条目；变更必须附带对应测试并通过 CI。
+- 代码审查：至少一名维护者审查通过方可合并；涉及合规或数据问题必须额外获得合规负责人批准。
+- 质量门：CI MUST 在合并前运行并通过 lint、测试与契约测试。
+
+## 治理
+
+宪章为本项目的最高工程治理文件。对宪章的修改须遵循下列流程：
+
+1. 提交 PR 修改 `.specify/memory/constitution.md`，在 PR 描述中列出變更理由、影响范围与迁移计划（如适用）。
+2. 至少两名核心维护者批准（其中一名可以是项目拥有者）；影响较大或涉及合规的修改需额外进行公开讨论并记录会议纪要。
+3. 合并后更新 `Last Amended` 日期，并在文件顶部的 Sync Impact Report 中记录版本迁移与受影响模板/文件。
+
+版本策略（语义化）：
+- MAJOR: 对治理条款、原则做出會破坏性改变（例如移除原则或重定义非可谈判规则）。
+- MINOR: 新增原则或显著扩展现有原则的强制性条款。
+- PATCH: 文案澄清、拼写修正、非实质性表述改动。
+
+合规审查期望：所有涉及数据采集、存储或发布的 PR 在合并前 MUST 完成数据合规检查并记录结果（通过 CI 检查或合规审阅表单）。
+
+**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE): 请维护者补充初始采纳日期 | **Last Amended**: 2025-11-09
+
