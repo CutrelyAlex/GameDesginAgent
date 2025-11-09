@@ -1,0 +1,35 @@
+{
+  "query": "深圳独立游戏",
+  "results": [
+    {
+      "title": "深圳独立游戏开发指南",
+      "url": "https://www.example.com/shenzhen-indie-dev-guide",
+      "content": "全面介绍深圳独立游戏开发生态，包括资源、社区和发行渠道。深圳作为科技创新中心，拥有完善的独立游戏开发支持体系。",
+      "score": 0.95
+    },
+    {
+      "title": "深圳独立游戏开发者访谈录",
+      "url": "https://www.example.com/shenzhen-indie-interviews",
+      "content": "采访多位深圳独立游戏开发者，分享他们的创作经验、挑战和成功故事。",
+      "score": 0.88
+    },
+    {
+      "title": "深圳Game Jam活动回顾",
+      "url": "https://www.example.com/shenzhen-game-jam-recap",
+      "content": "深圳Game Jam活动吸引了众多独立游戏爱好者参与，现场氛围热烈，诞生了多款创意游戏原型。",
+      "score": 0.82
+    },
+    {
+      "title": "深圳独立游戏市场分析",
+      "url": "https://www.example.com/shenzhen-indie-market-analysis",
+      "content": "分析深圳独立游戏市场现状、玩家偏好和未来发展趋势。",
+      "score": 0.79
+    },
+    {
+      "title": "深圳独立游戏发行平台推荐",
+      "url": "https://www.example.com/shenzhen-indie-platforms",
+      "content": "推荐适合深圳独立游戏开发者的发行平台，包括国内外主流平台的对比分析。",
+      "score": 0.75
+    }
+  ]
+}
