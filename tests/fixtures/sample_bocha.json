@@ -1,0 +1,27 @@
+{
+  "request_id": "test-bocha-001",
+  "data": {
+    "webPages": {
+      "value": [
+        {
+          "id": "1",
+          "name": "深圳独立游戏开发者社区 - Indienova",
+          "url": "https://indienova.com/groups/shenzhen",
+          "snippet": "深圳独立游戏开发者社区是一个专注于深圳地区独立游戏开发的交流平台，汇集了众多独立游戏开发者和爱好者。"
+        },
+        {
+          "id": "2",
+          "name": "2024深圳独立游戏嘉年华",
+          "url": "https://www.example.com/shenzhen-indie-game-festival-2024",
+          "snippet": "深圳独立游戏嘉年华是一年一度的独立游戏盛会，展示最新的独立游戏作品，促进开发者交流与合作。"
+        },
+        {
+          "id": "3",
+          "name": "深圳独立游戏工作室 TOP 10",
+          "url": "https://www.example.com/top-10-indie-studios-shenzhen",
+          "snippet": "盘点深圳最具影响力的10家独立游戏工作室，包括其代表作品和发展历程。"
+        }
+      ]
+    }
+  }
+}
