@@ -1,0 +1,53 @@
+# Root .gitignore for GameDesginAgent
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv
+venv/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Unit test / coverage reports
+.pytest_cache/
+.cache
+.coverage
+coverage.xml
+htmlcov/
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if any)
+node_modules/
+
+# Logs
+*.log
+
+# Jupyter
+.ipynb_checkpoints
+
+# Project-specific data outputs
+data/results/
+data/raw/
+data/processed/
+/.specify
+/specs
+/.specify
+/.specify
