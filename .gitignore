@@ -48,6 +48,6 @@ data/results/
 data/raw/
 data/processed/
 /.specify
-/.specify
-/.specify
 /specs
+.github/
+
